@@ -35,10 +35,10 @@ class ApplicationController < Sinatra::Base
       post.to_json
     end
     
-    #Display all the Post
+    #Display all the Post and user
     get "/" do
       post = Post.all
-      post.to_json
+      post.to_json(include: :user)
     end
 
     #find post by id
