@@ -4,7 +4,7 @@ class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
 
     #creates all the users
-    post "/user" do 
+    post "/user" do
       user= User.create(name:params[:name])
       user.to_json
     end
@@ -16,7 +16,7 @@ class ApplicationController < Sinatra::Base
     end
 
      #comment section
-     post "/comments" do 
+     post "/comments" do
       comment = Comment.create(comment:params[:comment])
       comment.to_json
     end
@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
       post = Post.create(user_id: user.id, comment_id:comment.id, title:params[:title], content:params[:content],category:params[:category])
       post.to_json
     end
-    
+
     #Display all the Post and user
     get "/" do
       post = Post.all
@@ -57,5 +57,5 @@ class ApplicationController < Sinatra::Base
     # error 404 do
     #   "404: We couldnt find that page!!"
     # end
- 
+
 end
