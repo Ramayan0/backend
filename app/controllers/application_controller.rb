@@ -8,6 +8,7 @@ class ApplicationController < Sinatra::Base
       user= User.create(name:params[:name])
       user.to_json
     end
+
     #gets all the users
     get "/user" do
       user = User.all
@@ -20,10 +21,10 @@ class ApplicationController < Sinatra::Base
       comment.to_json
     end
 
-    #Display all the Post
-    get "/" do
-      post = Post.all
-      post.to_json
+    #Gets all the comments
+    get "/comments" do
+      comment = Comment.all
+      comment.to_json
     end
 
      #posting a new Article
@@ -31,6 +32,12 @@ class ApplicationController < Sinatra::Base
       user= User.create(name:params[:name])
       comment = Comment.create(comment:params[:comment])
       post = Post.create(user_id: user.id, comment_id:comment.id, title:params[:title], content:params[:content],category:params[:category])
+      post.to_json
+    end
+    
+    #Display all the Post
+    get "/" do
+      post = Post.all
       post.to_json
     end
 
