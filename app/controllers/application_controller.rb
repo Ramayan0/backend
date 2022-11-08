@@ -14,9 +14,23 @@ class ApplicationController < Sinatra::Base
       user.to_json
     end
 
+     #comment section
+     post "/comments" do 
+      comment = Comment.create(comment:params[:comment])
+      comment.to_json
+    end
+
     #Display all the Post
     get "/" do
       post = Post.all
+      post.to_json
+    end
+
+     #posting a new Article
+     post "/post" do 
+      user= User.create(name:params[:name])
+      comment = Comment.create(comment:params[:comment])
+      post = Post.create(user_id: user.id, comment_id:comment.id, title:params[:title], content:params[:content],category:params[:category])
       post.to_json
     end
 
@@ -24,18 +38,6 @@ class ApplicationController < Sinatra::Base
     get "/post/:id" do
       post = Post.find(params[:id])
       post.to_json
-    end
-
-    #posting a new Article
-    post "/post" do 
-      post = Post.create(title:params[:title], content:params[:content],category:params[:category])
-      post.to_json
-    end
-
-      #comment section
-    post "/comments" do 
-      comment = Comment.create(comment:params[:comment])
-      comment.to_json
     end
 
     #deleting a post
