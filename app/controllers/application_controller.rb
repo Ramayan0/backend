@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
     end
 
      #posting a new Article
-     post "/posts" do 
+     post "/post" do 
       user= User.create(name:params[:name])
       comment = Comment.create(comment:params[:comment])
       post = Post.create(user_id: user.id, comment_id:comment.id, title:params[:title], content:params[:content],category:params[:category])
@@ -42,13 +42,13 @@ class ApplicationController < Sinatra::Base
     end
 
     #find post by id
-    get "/posts/:id" do
+    get "/post/:id" do
       post = Post.find(params[:id])
       post.to_json
     end
 
     #deleting a post
-    delete "/posts/:id" do
+    delete "/post/:id" do
       post = Post.find_by(params[:id])
       post.destroy
       post.to_json
