@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
     end
 
      #posting a new Article
-     post "/post" do
+     post "/post" do 
       user= User.create(name:params[:name])
       comment = Comment.create(comment:params[:comment])
       post = Post.create(user_id: user.id, comment_id:comment.id, title:params[:title], content:params[:content],category:params[:category])
